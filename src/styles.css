@@ -1,46 +1,54 @@
 /* App Container */
 .game {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
+}
+
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-size: 3rem;
 }
 
 /* Game Board */
 .game-board {
-  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 /* Status Display */
 .status {
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 /* Individual Squares */
 .square {
-  font-size: 32px;
-  width: 50px;
-  height: 50px;
-  margin-right: -1px;
-  margin-top: -1px;
+  font-size: 24px;
+  width: 60px;
+  height: 60px;
+  margin-right: -2px;
+  margin-top: -2px;
   padding: 0;
   text-align: center;
-  line-height: 50px;
+  line-height: 60px;
   background-color: #fff;
-  border: 1px solid #999;
+  border: 2px solid #999;
   float: left;
 }
 
 /* List of Moves */
 .game-info {
   font-size: 18px;
+  text-align: center;
 }
 
 .game-info ol {
-  padding-left: 20px;
+  padding-left: 0;
+  margin: 0;
 }
 
 .game-info button {
@@ -50,6 +58,26 @@
   cursor: pointer;
   text-decoration: underline;
   margin-bottom: 5px;
+  display: block;
+  width: 100%;
+}
+
+.game-info p {
+  margin: 4px;
+}
+
+.toggle-sort button {
+  margin-bottom: 20px;
+  background-color: rgb(22, 8, 8);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.toggle-sort button:hover {
+  background-color: white;
+  color: rgb(22, 8, 8);
 }
 
 .game-info button:hover {

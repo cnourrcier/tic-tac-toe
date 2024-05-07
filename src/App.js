@@ -36,9 +36,9 @@ function Board({ xIsNext, squares, onPlay }) {
     <>
       <div className="status">{status}</div>
       {[0, 1, 2].map(row => (
-        <div className="board-row">
+        <div key={row} className="board-row">
           {[0, 1, 2].map(col => {
-            return <Square value={squares[row * 3 + col]} onSquareClick={() => handleClick(row * 3 + col)} />
+            return <Square key={col} value={squares[row * 3 + col]} onSquareClick={() => handleClick(row * 3 + col)} />
           })}
         </div>
       ))}
@@ -50,6 +50,7 @@ function Board({ xIsNext, squares, onPlay }) {
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
+  const [isReversed, setIsReversed] = useState(false);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
@@ -63,7 +64,11 @@ export default function Game() {
     setCurrentMove(nextMove);
   }
 
-  const moves = history.map((squares, move) => {
+  function reverseMovesOrder() {
+    setIsReversed(!isReversed);
+  }
+
+  let moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
       description = "Go to move #" + move;
@@ -85,10 +90,18 @@ export default function Game() {
     };
   });
 
+  if (isReversed) {
+    moves = moves.reverse();
+  }
+
   return (
     <div className="game">
+      <h1>Tic Tac Toe</h1>
       <div className="game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="toggle-sort">
+        <button onClick={() => reverseMovesOrder()}>Reverse Moves Order</button>
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
